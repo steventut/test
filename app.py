@@ -3,9 +3,16 @@ from bokeh.models.widgets import Button
 from bokeh.models import CustomJS
 from streamlit_bokeh_events import streamlit_bokeh_events
 
-stt_button = Button(label="Speak", width=100)
+                     
 
-stt_button.js_on_event("button_click", CustomJS(code="""
+btnResult= st.sidebar.button('Run', key='RunBtn', help=None, on_click=function_1())
+if btnResult:
+    st.sidebar.text('Button pushed')
+
+#stt_button = Button(label="Speak", width=100)
+
+def function_1():
+    CustomJS(code="""
     var recognition = new webkitSpeechRecognition();
     recognition.continuous = true;
     recognition.interimResults = true;
@@ -22,10 +29,10 @@ stt_button.js_on_event("button_click", CustomJS(code="""
         }
     }
     recognition.start();
-    """))
+    """)
 
 result = streamlit_bokeh_events(
-    stt_button,
+    #stt_button,
     events="GET_TEXT",
     key="listen",
     refresh_on_update=False,
