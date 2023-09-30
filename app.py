@@ -3,12 +3,6 @@ from bokeh.models.widgets import Button
 from bokeh.models import CustomJS
 from streamlit_bokeh_events import streamlit_bokeh_events
 
-                     
-
-btnResult= st.sidebar.button('Run', key='RunBtn', help=None, on_click=function_1())
-if btnResult:
-    st.sidebar.text('Button pushed')
-
 #stt_button = Button(label="Speak", width=100)
 
 def function_1():
@@ -29,7 +23,11 @@ def function_1():
         }
     }
     recognition.start();
-    """)
+    """)                     
+
+btnResult= st.sidebar.button('Run', key='RunBtn', help=None, on_click=function_1())
+if btnResult:
+    st.sidebar.text('Button pushed')
 
 result = streamlit_bokeh_events(
     #stt_button,
